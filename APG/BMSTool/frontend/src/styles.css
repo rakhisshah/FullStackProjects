@@ -1,0 +1,8 @@
+.a {
+    background-color:bisque; 
+    background-image: url("src\assets\back.jpg");
+    background-repeat: no-repeat;
+    background-size: 1380px 100vh;
+    font-family:Arial, Helvetica, sans-serif;
+    
+  }

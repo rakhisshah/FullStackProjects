@@ -1,0 +1,51 @@
+
+<div class="container mt-5">
+   
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <!-- <th>#</th> -->
+                <th>Title</th>
+                <th>Author</th>
+                <th>Type</th>
+                <th>Genre</th>
+                <th>Publication</th>
+                <th>No. of Pages</th>
+                <th>Price</th>
+                <th>Actions</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of readdata">
+                <!-- <td>{{r.Book_id}}</td> -->
+                <td>{{r.Book_title}}</td>
+                <td>{{r.Book_author}}</td>
+                <td>{{r.book_type}}</td>
+                <td>{{r.genre_type}}</td>
+                <td>{{r.publication}}</td>
+                <td>{{r.no_of_pages}}</td>
+                <td>{{r.book_price}}</td>
+                
+
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="bookDeactivate(r.Book_id)">Deactivate</button>
+                    &nbsp;
+                    <a [routerLink]="['/create',r.Book_id]" class="btn btn-sm btn-success">Edit</a>
+                    
+                </td> 
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div *ngIf="errormsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{errormsg}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div *ngIf="succsessmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{succsessmsg}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>

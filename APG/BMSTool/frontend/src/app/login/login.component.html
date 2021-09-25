@@ -1,0 +1,54 @@
+
+  <div class="container">
+    <div class="row">
+        <div class="offset-sm-2">
+            <div class="card text-blank border-0">
+                <div class="card-body">
+                    <div class="card-title text-center">
+                        <h5>Sigu Up for free(using Reactive Forms)</h5>
+                    </div>
+                    <div class="card-text">
+                        <form #signupform="ngForm" (ngSubmit)="onSubmit(signupform)">
+                            <div class="form-row">
+                               <div class="form-group col-sm-6">
+                                   <input type="text" class="form-control" required placeholder="First Name" name="first_name" [(ngModel)]="first_name"  >
+                               </div>
+                               <div class="form-group col-sm-6">
+                                  <input type="text" class="form-control" required placeholder="Last Name" name="last_name" [(ngModel)]="last_name">
+                               </div> 
+                            </div>
+                            <div class="alert alert-danger"  *ngIf="signupform.controls['first_name'].touched==true && signupform.controls['first_name'].invalid ==true">
+                                                  First Name and Last Name required
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Enter Your Email" required class="form-control" name="email" [(ngModel)]="email" >
+                                <small class="form-text text-muted">
+                                    We will never share your email with ayone else
+                                </small>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="signupform.controls['email'].invalid==true && signupform.controls['email'].touched==true">
+                               valid Email id is rquired
+                           </div>
+                            <div class="form-group">
+                               <input type="password" class="form-control" placeholder="Password" required name="password" [(ngModel)]="password">
+                            </div> 
+                            <div class="form-group">
+                               <input type="text" class="form-control" placeholder="Confirm Password" >
+                            </div> 
+                            <div class="alert alert-danger" *ngIf="signupform.controls['password'].valid==true  && signupform.controls['password'].touched == true">
+                               Please enter password
+                           </div>
+                            <div class="text-center">
+                                <button type="submit"  class="btn btn-block btn-warning">Submit</button>
+                            </div>
+                           
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+

@@ -1,0 +1,202 @@
+ <!-- <div class="container mt-5 ">
+    show error messages --
+    <div *ngIf="errormsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{errormsg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="succsessmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{succsessmsg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <form [formGroup]="bookForm" (ngSubmit)="bookSubmit()"> 
+    <form [formGroup]="bookForm">
+   
+        <div class="col-lg-4 mt-2 form-group">
+            <label for="booktitle" class="form-label">Book Title</label>
+            <input class="form-control" formControlName="booktitle" type="text" placeholder="enter book title">
+        </div>
+        <div class="col-lg-4 mt-2">
+            <label for="bookauthor" class="form-label">Book Author</label>
+            <input class="form-control" formControlName="bookauthor" type="text" placeholder="enter book author">
+        </div>
+        <div class="col-lg-4 mt-2">
+            <label for="booktype" class="form-label">Book Type</label>
+            <select class="btn btn-secondary dropdown-toggle" formControlName="booktype">
+                
+                <option *ngFor="let btype of booktype" [value]="btype.Type_id">
+                    {{btype.Book_type}}
+                </option>
+            </select>
+
+        </div>
+        <div class="col-lg-4 mt-2">
+            <label for="genretype" class="form-label">Book Genre</label>
+            <select class="btn btn-secondary dropdown-toggle" formControlName="genretype">
+
+                <option *ngFor="let gtype of genretype" [value]="gtype.Genre_id">
+                    {{gtype.Genre_type}}
+                </option>
+            </select>
+
+        </div>
+
+
+
+        <div class="col-lg-4 mt-2">
+            <label for="publication" class="form-label">Book Publication</label>
+            <input class="form-control" formControlName="publication" type="text" placeholder="enter book publication">
+        </div>
+        <div class="col-lg-4 mt-2">
+            <label for="noofpages" class="form-label">Number of Pages</label>
+            <input class="form-control" formControlName="noofpages" type="number" placeholder="enter no of pages">
+        </div>
+        <div class="col-lg-4 mt-2">
+            <label for="bookprice" class="form-label">Book Price</label>
+            <input class="form-control" formControlName="bookprice" type="text" placeholder="enter book price">
+        </div>
+
+
+
+        <div class="col=lg-4 mt-2">            
+            <button class="btn btn-primary btn-sm" (click)="bookSubmit()" *ngIf="!getParamId">Submit</button>
+        </div>
+        <div class="col=lg-4 mt-2">
+            <button class="btn btn-dark btn-sm" (click)="bookUpdate()" *ngIf="getParamId">Update</button>
+        </div>
+    </form>
+</div> -->
+
+
+<div class="container">
+    <div class="row mt-2">
+        <div class="offset-sm-2 col-sm-8">
+            <div class="card text-blank border-1" style="background-color: rgb(231, 243, 237); ">
+                <div class="card-body">
+                    
+                    <div class="card-title card-center">
+                        <h5>Book Details</h5>
+                    </div>
+
+                    <!-- show error messages -- -->
+                   
+                    <div class="card-text mt-2" >
+                        <form [formGroup]="bookForm">
+                          <div *ngIf="errormsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{errormsg}}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <div *ngIf="succsessmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{succsessmsg}}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div> 
+                            <div class="row ">
+                                <div class="form-group col-sm-2">
+                                    <label for="booktitle" class="form-label">Title</label>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" formControlName="booktitle" type="text" placeholder="enter book title">
+                                </div>
+                                <div class=" alert alert-danger" *ngIf="(!bookForm.controls['booktitle'].valid && bookForm.controls['booktitle'].touched )">
+                                    Book title is required
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="bookauthor" class="form-label">Author</label>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" formControlName="bookauthor" type="text" placeholder="enter book author">
+                                </div>
+                                <div class=" alert alert-danger" *ngIf="(!bookForm.controls['bookauthor'].valid && bookForm.controls['bookauthor'].touched )">
+                                    Book author is required
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="booktype" class="form-label">Type</label>
+                                </div>
+                                <div class="form-group col-sm-10">
+                                    <select class="btn btn-secondary dropdown-toggle" formControlName="booktype">
+                
+                                        <option *ngFor="let btype of booktype" [value]="btype.Type_id">
+                                            {{btype.Book_type}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class=" alert alert-danger" *ngIf="(!bookForm.controls['booktype'].valid && bookForm.controls['booktype'].touched )">
+                                    Please select book type
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="genretype" class="form-label">Genre</label>
+                                </div>
+                                <div class="form-group col-sm-10">
+                                    <select class="btn btn-secondary dropdown-toggle" formControlName="genretype">
+
+                                        <option *ngFor="let gtype of genretype" [value]="gtype.Genre_id">
+                                            {{gtype.Genre_type}}
+                                        </option>
+                                    </select>
+                        
+                                </div>
+                                <div class=" alert alert-danger" *ngIf="(!bookForm.controls['genretype'].valid && bookForm.controls['genretype'].touched )">
+                                    Please select book genre
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="publication" class="form-label">Publication</label>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" formControlName="publication" type="text" placeholder="enter book publication">
+                                </div>
+                                <div class=" alert alert-danger" *ngIf="(!bookForm.controls['publication'].valid && bookForm.controls['publication'].touched )">
+                                    Publication is required
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="noofpages" class="form-label">No. of Pages</label>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" formControlName="noofpages" type="number" placeholder="enter no of pages">
+                                </div>
+                                <div class=" alert alert-danger" *ngIf="(!bookForm.controls['noofpages'].valid && bookForm.controls['noofpages'].touched )">
+                                    No.of pages is required
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="bookprice" class="form-label">Price</label>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" formControlName="bookprice" type="text" placeholder="enter book price">
+                                </div>
+                                <div class=" alert alert-danger"  *ngIf="(!bookForm.controls['bookprice'].valid && bookForm.controls['bookprice'].touched )">
+                                    Book Price is required
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-sm-2">
+                                    <label for="coverphoto" class="form-label">Cover Photo</label>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input type="file" class="form-control" id="inputGroupFile01">
+                                </div>
+                            </div>
+                            
+                            <div class="col=lg-4 mt-4">            
+                                <!-- <button class="btn btn-primary btn-sm" (click)="bookSubmit()" *ngIf="!getParamId">Add</button> -->
+                                <button class="btn btn-primary btn-sm" (click)="bookSubmit()" *ngIf="!getParamId" [disabled]="!bookForm.valid">Add</button>
+                            </div>
+                            <div class="col=lg- mt-4">
+                                <button class="btn btn-dark btn-sm" (click)="bookUpdate()" [disabled]="!bookForm.valid" *ngIf="getParamId">Update</button>
+                            </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
